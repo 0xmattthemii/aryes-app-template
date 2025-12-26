@@ -5,7 +5,10 @@ const envSchema = z.object({
   DATABASE_URL: z.string().url(),
   
   // Payload CMS
-  PAYLOAD_SECRET: z.string().min(16),
+  PAYLOAD_SECRET: z.string().min(32),
+
+  // Better Auth
+  BETTER_AUTH_SECRET: z.string().min(32),
   
   // App Defaults
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
