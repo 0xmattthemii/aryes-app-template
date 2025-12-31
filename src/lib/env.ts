@@ -19,17 +19,12 @@ const envSchema = z.object({
 const result = envSchema.safeParse(process.env);
 
 if (!result.success) {
-  console.error('❌ Invalid environment variables:', result.error.flatten().fieldErrors);
+  console.error('Invalid environment variables:', result.error.format());
   throw new Error('Invalid environment variables. Check your .env.local file.');
 }
 
 // 2. Export the validated data
 export const env = result.data;
 
-// 3. Global Type Augmentation
-// This allows you to use process.env.DATABASE_URL with full autocomplete everywhere
-declare global {
-  namespace NodeJS {
-    interface ProcessEnv extends z.infer<typeof envSchema> {}
-  }
-}
+// 3. Export the type for use elsewhere if needed
+export type Env = z.infer<typeof envSchema>;

@@ -2,11 +2,13 @@
   "name": "aryes-website-v2",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "dev": "bun run --bun next dev",
+    "build": "bun run --bun next build",
+    "start": "bun run --bun next start",
+    "lint": "bun run --bun eslint",
+    "generate:types": "bunx payload generate:types"
   },
   "dependencies": {
     "@base-ui/react": "^1.0.0",
@@ -19,10 +21,12 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "graphql": "^16.12.0",
+    "lenis": "^1.3.17",
     "lucide-react": "^0.562.0",
     "negotiator": "^1.0.0",
     "next": "16.1.1",
     "payload": "^3.69.0",
+    "payloadcms-lexical-ext": "^0.5.3",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "shadcn": "^3.6.2",

@@ -1,16 +1,47 @@
 import sharp from 'sharp'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { lexicalEditor, FixedToolbarFeature, TextStateFeature, defaultColors } from '@payloadcms/richtext-lexical'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { buildConfig } from 'payload'
 import { en } from '@payloadcms/translations/languages/en'
 import { fr } from '@payloadcms/translations/languages/fr'
 
+// Collections
+import { Media } from './src/payload/collections/Media'
+import { ServiceCategories } from './src/payload/collections/ServiceCategories'
+import { Services } from './src/payload/collections/Services'
+import { Industries } from './src/payload/collections/Industries'
+import { TeamMembers } from './src/payload/collections/TeamMembers'
+import { MegaMenus } from './src/payload/collections/MegaMenus'
+
+// Globals
+import { SiteSettings } from './src/payload/globals/SiteSettings'
+import { Navigation } from './src/payload/globals/Navigation'
+import { Footer } from './src/payload/globals/Footer'
+import { HomePage } from './src/payload/globals/HomePage'
+
+
 export default buildConfig({
   // If you'd like to use Rich Text, pass your editor here
-  editor: lexicalEditor(),
-
-  // Define and configure your collections in this array
-  collections: [],
+  editor: lexicalEditor({
+    features: ({ defaultFeatures }) => [
+      ...defaultFeatures,
+      FixedToolbarFeature(),
+      TextStateFeature({
+        state: {
+          color: {
+            ...defaultColors.text,
+            'aryes-blue': {
+              label: 'Aryes Blue',
+              css: {
+                color: '#417aff',
+              },
+            },
+          },
+        },
+      }),
+    ],
+    
+  }),
 
   // Your Payload secret - should be a complex and secure string, unguessable
   secret: process.env.PAYLOAD_SECRET || '',
@@ -28,6 +59,23 @@ export default buildConfig({
   localization: {
     locales: ['en', 'fr'],
     defaultLocale: 'en',
+  },
+  collections: [
+    Media,
+    ServiceCategories,
+    Services,
+    Industries,
+    TeamMembers,
+    MegaMenus,
+  ],
+  globals: [
+    SiteSettings,
+    Navigation,
+    Footer,
+    HomePage,
+  ],
+  typescript: {
+    outputFile: './src/types/payload-types.ts',
   },
   // If you want to resize images, crop, set focal point, etc.
   // make sure to install it and pass it to the config.
