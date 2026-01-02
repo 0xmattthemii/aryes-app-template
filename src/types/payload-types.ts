@@ -102,12 +102,14 @@ export interface Config {
     navigation: Navigation;
     footer: Footer;
     'home-page': HomePage;
+    'advisory-page': AdvisoryPage;
   };
   globalsSelect: {
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
     navigation: NavigationSelect<false> | NavigationSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
     'home-page': HomePageSelect<false> | HomePageSelect<true>;
+    'advisory-page': AdvisoryPageSelect<false> | AdvisoryPageSelect<true>;
   };
   locale: 'en' | 'fr';
   user: User & {
@@ -696,6 +698,10 @@ export interface Navigation {
 export interface Footer {
   id: number;
   /**
+   * Title for the Company column
+   */
+  companyColumnTitle: string;
+  /**
    * Links shown in the Company column
    */
   companyLinks?:
@@ -705,6 +711,10 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
+  /**
+   * Title for the Legal column
+   */
+  legalColumnTitle: string;
   /**
    * Links shown in the Legal column
    */
@@ -728,6 +738,10 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
+  /**
+   * Title for the Language column
+   */
+  languageColumnTitle: string;
   /**
    * Copyright text. Use {year} for current year, {company} for company name, {location} for location.
    */
@@ -892,6 +906,139 @@ export interface HomePage {
   createdAt?: string | null;
 }
 /**
+ * Configure Advisory page content
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "advisory-page".
+ */
+export interface AdvisoryPage {
+  id: number;
+  pageHeader: {
+    /**
+     * Category label shown above the title
+     */
+    category: string;
+    /**
+     * Main page title
+     */
+    title: string;
+    /**
+     * Subtitle/description text
+     */
+    subtitle: string;
+    /**
+     * Background image for the header
+     */
+    image: number | Media;
+    /**
+     * Show blue accent line below category
+     */
+    withBlueLine?: boolean | null;
+    /**
+     * Header size variant
+     */
+    size?: ('standard' | 'large') | null;
+  };
+  introSection: {
+    title: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    description: string;
+  };
+  practiceAreas?:
+    | {
+        /**
+         * Practice number label (e.g., "Practice 01", "Practice 02")
+         */
+        practiceNumber: string;
+        title: string;
+        description: string;
+        image: number | Media;
+        services?:
+          | {
+              label: string;
+              /**
+               * URL path (e.g., /advisory/services/technology-strategy)
+               */
+              href: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  perspectiveSection: {
+    label: string;
+    title: string;
+    quote: string;
+    items?:
+      | {
+          title: string;
+          description: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  industriesSection: {
+    title: string;
+    description: string;
+    /**
+     * Select industries to display in the industries section
+     */
+    industries: (number | Industry)[];
+  };
+  ctaSection: {
+    /**
+     * CTA title (supports rich text formatting)
+     */
+    title: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    /**
+     * CTA subtitle/description
+     */
+    subtitle: string;
+    /**
+     * Text displayed on the CTA button
+     */
+    buttonText: string;
+    /**
+     * URL path for the CTA button (e.g., /contact)
+     */
+    buttonLink: string;
+    /**
+     * Background color variant
+     */
+    backgroundColor?: ('stone' | 'white' | 'dark') | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site-settings_select".
  */
@@ -956,6 +1103,7 @@ export interface NavigationSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
+  companyColumnTitle?: T;
   companyLinks?:
     | T
     | {
@@ -963,6 +1111,7 @@ export interface FooterSelect<T extends boolean = true> {
         href?: T;
         id?: T;
       };
+  legalColumnTitle?: T;
   legalLinks?:
     | T
     | {
@@ -977,6 +1126,7 @@ export interface FooterSelect<T extends boolean = true> {
         url?: T;
         id?: T;
       };
+  languageColumnTitle?: T;
   copyright?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -1051,6 +1201,77 @@ export interface HomePageSelect<T extends boolean = true> {
         location?: T;
         ctaLabel?: T;
         ctaHref?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "advisory-page_select".
+ */
+export interface AdvisoryPageSelect<T extends boolean = true> {
+  pageHeader?:
+    | T
+    | {
+        category?: T;
+        title?: T;
+        subtitle?: T;
+        image?: T;
+        withBlueLine?: T;
+        size?: T;
+      };
+  introSection?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  practiceAreas?:
+    | T
+    | {
+        practiceNumber?: T;
+        title?: T;
+        description?: T;
+        image?: T;
+        services?:
+          | T
+          | {
+              label?: T;
+              href?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  perspectiveSection?:
+    | T
+    | {
+        label?: T;
+        title?: T;
+        quote?: T;
+        items?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              id?: T;
+            };
+      };
+  industriesSection?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        industries?: T;
+      };
+  ctaSection?:
+    | T
+    | {
+        title?: T;
+        subtitle?: T;
+        buttonText?: T;
+        buttonLink?: T;
+        backgroundColor?: T;
       };
   updatedAt?: T;
   createdAt?: T;

@@ -18,6 +18,7 @@ import { SiteSettings } from './src/payload/globals/SiteSettings'
 import { Navigation } from './src/payload/globals/Navigation'
 import { Footer } from './src/payload/globals/Footer'
 import { HomePage } from './src/payload/globals/HomePage'
+import { AdvisoryPage } from './src/payload/globals/AdvisoryPage'
 
 
 export default buildConfig({
@@ -73,6 +74,7 @@ export default buildConfig({
     Navigation,
     Footer,
     HomePage,
+    AdvisoryPage,
   ],
   typescript: {
     outputFile: './src/types/payload-types.ts',
