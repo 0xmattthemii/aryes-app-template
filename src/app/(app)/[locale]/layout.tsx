@@ -6,6 +6,7 @@ import { HeaderClient } from '@/components/layout/HeaderClient';
 import { fetchHeaderData } from '@/components/layout/HeaderWrapper';
 import { Footer } from '@/components/layout/Footer';
 import { LoadingScreen } from '@/components/layout/LoadingScreen';
+import { fetchFooterData } from '@/lib/footer-data';
 import "../globals.css";
 import { Config } from "@/types/payload-types";
 
@@ -27,6 +28,7 @@ export default async function RootLayout({
 }) {
   const { locale } = await params;
   const { navigationItems, logo } = await fetchHeaderData(locale);
+  const { footer: footerData, logo: footerLogo, address } = await fetchFooterData(locale);
 
   return (
     <html lang={locale} className={`${inter.variable} ${playfair.variable}`}>
@@ -39,7 +41,7 @@ export default async function RootLayout({
             <main className="grow">
               {children}
             </main>
-            <Footer locale={locale} />
+            <Footer locale={locale} footerData={footerData} logo={footerLogo} address={address} />
           </PageMetadataProvider>
         </SmoothScroll>
       </body>

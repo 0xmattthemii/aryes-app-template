@@ -85,7 +85,7 @@ export function Header({ locale, navigationItems, logo }: HeaderProps) {
   return (
     <header className={`fixed w-full z-50 transition-all duration-300 ${headerBgClass}`}>
       <div
-        className={`relative z-50 max-w-7xl mx-auto px-6 flex items-center justify-between transition-all duration-300 ${paddingClass}`}
+        className={`relative z-50 max-w-7xl mx-auto px-8 md:px-12 flex items-center justify-between transition-all duration-300 ${paddingClass}`}
       >
         <Logo isDark={useDarkText} locale={locale} logo={logo} />
 
@@ -193,7 +193,7 @@ export function Header({ locale, navigationItems, logo }: HeaderProps) {
 
       {/* Mobile Menu */}
       {isMobileOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-white h-screen overflow-y-auto px-6 py-8 border-t border-gray-100">
+        <div className="md:hidden absolute top-full left-0 w-full bg-white h-screen overflow-y-auto px-8 md:px-12 py-8 border-t border-gray-100">
           {itemsWithMegaMenus.map((item) => {
             const itemId = item.id || item.href;
             return (

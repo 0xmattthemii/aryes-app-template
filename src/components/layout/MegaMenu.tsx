@@ -15,7 +15,7 @@ interface MegaMenuProps {
 export function MegaMenu({ isOpen, onMouseEnter, onMouseLeave, closeMenu, locale, megaMenu, basePath }: MegaMenuProps) {
   return (
     <div
-      className={`absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-xl pt-10 pb-14 px-6 z-40 transition-all duration-300 ${
+      className={`absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-xl pt-10 pb-14 px-8 md:px-12 z-40 transition-all duration-300 ${
         isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
       }`}
       onMouseEnter={onMouseEnter}

@@ -7,7 +7,7 @@ export const Section: React.FC<{
   return (
     <section 
       id={id} 
-      className={`py-20 md:py-32 px-6 md:px-12 ${dark ? 'bg-aryes-dark text-white' : ''} ${className}`}
+      className={`py-20 md:py-32 px-8 md:px-12 ${dark ? 'bg-aryes-dark text-white' : ''} ${className}`}
     >
       <div className="max-w-7xl mx-auto">
         {children}

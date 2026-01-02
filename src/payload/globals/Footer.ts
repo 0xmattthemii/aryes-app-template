@@ -17,6 +17,19 @@ export const Footer: GlobalConfig = {
   },
   fields: [
       {
+        name: 'companyColumnTitle',
+        type: 'text',
+        required: true,
+        localized: true,
+        defaultValue: 'Company',
+        admin: {
+          description: {
+            en: 'Title for the Company column',
+            fr: 'Titre de la colonne Entreprise',
+          },
+        },
+      },
+      {
         name: 'companyLinks',
         type: 'array',
         label: {
@@ -42,6 +55,19 @@ export const Footer: GlobalConfig = {
             required: true,
           },
         ],
+      },
+      {
+        name: 'legalColumnTitle',
+        type: 'text',
+        required: true,
+        localized: true,
+        defaultValue: 'Legal',
+        admin: {
+          description: {
+            en: 'Title for the Legal column',
+            fr: 'Titre de la colonne Légale',
+          },
+        },
       },
       {
         name: 'legalLinks',
@@ -106,6 +132,19 @@ export const Footer: GlobalConfig = {
             },
           },
         ],
+      },
+      {
+        name: 'languageColumnTitle',
+        type: 'text',
+        required: true,
+        localized: true,
+        defaultValue: 'Language',
+        admin: {
+          description: {
+            en: 'Title for the Language column',
+            fr: 'Titre de la colonne Langue',
+          },
+        },
       },
       {
         name: 'copyright',

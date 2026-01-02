@@ -40,7 +40,7 @@ export default async function HomePage({ params }: HomePageProps) {
           )} />
         )}
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-20">
+        <div className="relative z-10 max-w-7xl mx-auto px-8 md:px-12 w-full pt-20">
           <div className="max-w-4xl animate-fade-in-up">
             <h1 className="text-6xl md:text-7xl font-serif font-medium text-white mb-8 leading-[1.1] tracking-tight">
               {hero.title} <br />
@@ -65,12 +65,12 @@ export default async function HomePage({ params }: HomePageProps) {
                         <Link
                           key={button.id || index}
                           href={href}
-                          className="group relative flex items-center justify-between gap-12 pl-8 pr-2 py-2 bg-white/10 backdrop-blur-md border border-white/10 hover:bg-white/20 hover:border-white/20 transition-all duration-300 w-full sm:w-auto min-w-[210px]"
+                          className="group relative flex items-center justify-between gap-8 pl-8 pr-2 py-2 bg-white/10 backdrop-blur-md border border-white/10 hover:bg-white/20 hover:border-white/20 transition-all duration-300 w-full sm:w-auto min-w-[180px]"
                         >
                           <span className="text-white tracking-[0.2em] text-sm font-medium uppercase">
                             {button.label}
                           </span>
-                          <div className="w-9 h-9 bg-aryes-blue flex items-center justify-center text-white transition-all duration-300 group-hover:bg-white group-hover:text-aryes-blue">
+                          <div className="w-9 h-9 shrink-0 bg-aryes-blue flex items-center justify-center text-white transition-all duration-300 group-hover:bg-white group-hover:text-aryes-blue">
                             <ArrowRight
                               size={20}
                               className="transform -rotate-45 group-hover:rotate-0 transition-transform duration-400"
@@ -84,7 +84,7 @@ export default async function HomePage({ params }: HomePageProps) {
                       <Link
                         key={button.id || index}
                         href={href}
-                        className="flex items-center justify-center px-6 py-4 border border-white/30 text-white hover:bg-white hover:text-aryes-dark transition-colors text-sm font-medium tracking-widest min-w-[200px]"
+                        className="flex items-center justify-center px-6 py-4 border border-white/30 text-white hover:bg-white hover:text-aryes-dark transition-colors text-sm font-medium tracking-widest min-w-[180px]"
                       >
                         {button.label}
                       </Link>
@@ -97,7 +97,7 @@ export default async function HomePage({ params }: HomePageProps) {
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center text-white/30">
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 hidden sm:flex flex-col items-center text-white/30">
           <span className="text-[10px] uppercase tracking-[0.3em] mb-3">{hero.scrollLabel || 'Scroll'}</span>
           <div className="h-12 w-px bg-linear-to-b from-white/0 via-white/50 to-white/0"></div>
         </div>
@@ -209,7 +209,7 @@ export default async function HomePage({ params }: HomePageProps) {
       {/* Leadership Section - Modified: Staggered Layout with Z-index swap and Blue filters */}
       {leadership && leadership.teamMembers && leadership.teamMembers.length > 0 && (
         <section className="bg-aryes-dark py-32 border-t border-white/5 relative overflow-hidden">
-          <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="max-w-7xl mx-auto px-8 md:px-12 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
               {/* Text Content */}
               <div className="flex flex-col h-full justify-center order-2 lg:order-1">
@@ -297,7 +297,7 @@ export default async function HomePage({ params }: HomePageProps) {
 
       {/* Revised Contact Section */}
       {contact && (
-        <section className="py-32 px-6 bg-aryes-stone relative overflow-hidden">
+        <section className="py-32 px-8 md:px-12 bg-aryes-stone relative overflow-hidden">
           <div className="max-w-7xl mx-auto relative z-10">
             <RevealOnScroll>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
